@@ -1,16 +1,15 @@
 # PhxBootstrap
 
-**TODO: Add description**
+Wrapper for [Boostrap v5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) on [Phoenix FrameWork](https://www.phoenixframework.org/)
 
-## Installation
+## Installation (not available on hex yet, but soon it will 🚀)
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `phx_bootstrap` to your list of dependencies in `mix.exs`:
+`At the moment , you can install it directly from github`
 
 ```elixir
 def deps do
   [
-    {:phx_bootstrap, "~> 0.1.0"}
+   {:phx_bootstrap, git: "https://github.com/ponyesteves/phx_bootstrap.git"}
   ]
 end
 ```
