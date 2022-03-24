@@ -3,16 +3,9 @@ defmodule PhxBootstrap do
   Documentation for `PhxBootstrap`.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> PhxBootstrap.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  defmacro __using__(_opts) do
+    quote do
+      alias PhxBootstrap.Form, as: BF
+    end
   end
 end
