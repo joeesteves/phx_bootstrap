@@ -1,6 +1,6 @@
 defmodule PhxBootstrap.Form do
   @moduledoc """
-  Documentation for `PhxBootstrap`.
+  Documentation for `PhxBootstrap.Form`
   """
   alias Phoenix.HTML.Form
   alias Phoenix.HTML.Tag
@@ -9,17 +9,19 @@ defmodule PhxBootstrap.Form do
   @doc """
     maps every field_input from HTML.Form
   """
-  @fields ~w(
-    date_input
-    email_input
-    password_input
-    telephone_input
-    text_input
-    )a
 
   @wrapper_base_class "mb-3"
   @label_base_class "form-label"
   @input_base_class "form-control"
+
+  @fields ~w(
+    date_input
+    email_input
+    hidden_input
+    password_input
+    telephone_input
+    text_input
+  )a
 
   for src_name <- @fields do
     dest_name = "#{src_name}" |> String.to_atom()
@@ -30,7 +32,7 @@ defmodule PhxBootstrap.Form do
       label_base_class = unquote(@label_base_class)
 
       content = [
-        Form.label(f, opts[:label], class: label_base_class),
+        Form.label(f, field, opts[:label], class: label_base_class),
         apply(Form, original_fx, [
           f,
           field,
@@ -50,12 +52,12 @@ defmodule PhxBootstrap.Form do
 
   def checkbox(f, field, opts \\ []) do
     content = [
-      Form.label(f, opts[:label], class: "form-check-label"),
-      checkbox(f, field, build_opts(f, field, opts, "form-check-input")),
+      Form.label(f, field, opts[:label], class: "form-check-label"),
+      Form.checkbox(f, field, build_opts(f, field, opts, "form-check-input")),
       error_tag(f, field)
     ]
 
-    Tag.content_tag(:div, content, class: compact([@wrapper_base_class, opts[:wrapper_class]]))
+    Tag.content_tag(:div, content, class: compact(["form-check", @wrapper_base_class, opts[:wrapper_class]]))
   end
 
   def select(f, field, options, opts \\ []) do
@@ -69,9 +71,9 @@ defmodule PhxBootstrap.Form do
   end
 
   def submit(label, opts \\ []) do
-    content = submit(label, class: compact(["btn btn-primary me-3", opts[:class]]))
+    content = Form.submit(label, class: compact(["btn btn-primary me-3", opts[:class]]))
 
-    Tag.content_tag(:div, content, class: compact([@wrapper_base_class, opts[:wrapper_class]]))
+    Tag.content_tag(:div, content, class: compact([@wrapper_base_class, "mt-3", opts[:wrapper_class]]))
   end
 
   def submit_and_back_to(label, opts \\ []) do
@@ -86,7 +88,7 @@ defmodule PhxBootstrap.Form do
       )
 
     content = [
-      Form.submit(label, class: compact(["btn btn-primary me-3", opts[:class]])),
+      Form.submit(label, class: compact(["btn btn-primary my-3 me-3", opts[:class]])),
       Link.link(back_to_label, to: back_to)
     ]
 
@@ -157,4 +159,3 @@ defmodule PhxBootstrap.Form do
     end
   end
 end
-
