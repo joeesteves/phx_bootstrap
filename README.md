@@ -61,7 +61,7 @@ Then on any template you just
 </div>
 ```
 
-This will render like this (add errors to show how they look) (:eyes: it's translated to spanich through Gettext) 
+This will render like this (add errors to show how they look) (:eyes: it's translated to spanish through Gettext) 
 
 ![image](https://user-images.githubusercontent.com/4960589/159961474-829b1b15-cfbd-434e-a9b3-8047e0cc9e80.png)
 
