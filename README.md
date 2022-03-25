@@ -30,7 +30,7 @@ config :phx_bootstrap,
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      use PhxBootstrap   <<<<< This adds an alias BF for Form module
+      use PhxBootstrap   <<<<< This adds an alias BF for PhxBootstrap.Form module
 ```
 
 Then on any template you just
@@ -64,9 +64,6 @@ Then on any template you just
 This will render like this (add errors to show how they look)
 
 ![image](https://user-images.githubusercontent.com/4960589/159961474-829b1b15-cfbd-434e-a9b3-8047e0cc9e80.png)
-
-
-
 
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
