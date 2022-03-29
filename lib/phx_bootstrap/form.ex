@@ -21,6 +21,7 @@ defmodule PhxBootstrap.Form do
     password_input
     telephone_input
     text_input
+    number_input
   )a
 
   for src_name <- @fields do
