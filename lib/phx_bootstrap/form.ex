@@ -58,7 +58,9 @@ defmodule PhxBootstrap.Form do
       error_tag(f, field)
     ]
 
-    Tag.content_tag(:div, content, class: compact(["form-check", @wrapper_base_class, opts[:wrapper_class]]))
+    Tag.content_tag(:div, content,
+      class: compact(["form-check", @wrapper_base_class, opts[:wrapper_class]])
+    )
   end
 
   def select(f, field, options, opts \\ []) do
@@ -74,7 +76,9 @@ defmodule PhxBootstrap.Form do
   def submit(label, opts \\ []) do
     content = Form.submit(label, class: compact(["btn btn-primary me-3", opts[:class]]))
 
-    Tag.content_tag(:div, content, class: compact([@wrapper_base_class, "mt-3", opts[:wrapper_class]]))
+    Tag.content_tag(:div, content,
+      class: compact([@wrapper_base_class, "mt-3", opts[:wrapper_class]])
+    )
   end
 
   def submit_and_back_to(label, opts \\ []) do
@@ -126,7 +130,7 @@ defmodule PhxBootstrap.Form do
 
   defp error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
-      Tag.content_tag(:div, translate_error(error),
+      Tag.content_tag(:div, Phoenix.HTML.raw(translate_error(error)),
         class: "invalid-feedback d-block",
         phx_feedback_for: Form.input_name(form, field)
       )
