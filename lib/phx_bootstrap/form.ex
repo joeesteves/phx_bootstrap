@@ -42,7 +42,16 @@ defmodule PhxBootstrap.Form do
         error_tag(f, field)
       ]
 
-      Tag.content_tag(:div, content, class: compact([@wrapper_base_class, opts[:wrapper_class]]))
+      Tag.content_tag(:div, content,
+        class: compact([wrapper_base_class(unquote(src_name)), opts[:wrapper_class]])
+      )
+    end
+  end
+
+  defp wrapper_base_class(field_name) do
+    case field_name do
+      :hidden_input -> "mb-0"
+      _ -> @wrapper_base_class
     end
   end
 
@@ -67,6 +76,16 @@ defmodule PhxBootstrap.Form do
     content = [
       Form.label(f, opts[:label], class: @label_base_class),
       Form.select(f, field, options, build_opts(f, field, opts, "form-select")),
+      error_tag(f, field)
+    ]
+
+    Tag.content_tag(:div, content, class: compact([@wrapper_base_class, opts[:wrapper_class]]))
+  end
+
+  def multiple_select(f, field, options, opts \\ []) do
+    content = [
+      Form.label(f, opts[:label], class: @label_base_class),
+      Form.multiple_select(f, field, options, build_opts(f, field, opts, "form-select")),
       error_tag(f, field)
     ]
 
@@ -127,6 +146,9 @@ defmodule PhxBootstrap.Form do
 
     [default_class, valid_class, assigns[:class]] |> Enum.reject(&is_nil(&1)) |> Enum.join(" ")
   end
+
+  # Allow using blind forms BF.text_input :form
+  defp error_tag(form, _field) when is_atom(form), do: ""
 
   defp error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
